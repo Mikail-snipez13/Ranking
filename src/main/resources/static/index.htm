@@ -231,19 +231,24 @@
 
     <!-- SCRIPT -->
     <script type="text/javascript">
+
+        const Url = 'https://teacherranking.ddns.net'
+
         var p = document.getElementById("count");
         var interval = setInterval(loadCount, 30000);
         var xmlHttp = new XMLHttpRequest();
 
         function loadCount() {
             xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", "http://localhost:8080/page", false);
+            url = Url + "/page";
+            xmlHttp.open("GET", url, false);
             xmlHttp.send(null);
             text = xmlHttp.responseText.replace("[", "").replace("]", "");  
             p.innerHTML = text + " mal aufgerufen"; 
 
             xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", "http://localhost:8080/requests", false);
+            url = Url + "/requests"
+            xmlHttp.open("GET", url, false);
             xmlHttp.send(null);
             text = xmlHttp.responseText.replace("[", "").replace("]", "") + " haben abgestimmt";
             document.getElementById('requests').innerHTML = text;
@@ -264,23 +269,23 @@
             var noInTime = document.getElementById('noInTime').value;
             var dishonorable = document.getElementById('dishonorable').value;
 
-            var url = "http://localhost:8080/tickets?mode=use&id=0"
+            var url = Url + "/tickets?mode=use&id=0";
 
             if (ticket != "" && unprepared != "" && joker != "" && late != "" && spoiled != "" && party != "" && smart != "" && beauty != "" && noMention != "" && noInTime != "" && dishonorable != "") {
-                url = "http://localhost:8080/tickets?mode=use&id=" + ticket + "&unprepared=" + unprepared + "&joker=" + joker 
+                url = Url + "/tickets?mode=use&id=" + ticket + "&unprepared=" + unprepared + "&joker=" + joker 
                         + "&late=" + late + "&spoiled=" + spoiled + "&party=" + party + "&smart=" + smart + "&beauty=" + beauty 
                         + "&noMention=" + noMention + "&noInTime=" + noInTime + "&dishonorable=" + dishonorable;
                 xmlHttp.open("GET", url , false);
                 xmlHttp.send(null);
                 response = xmlHttp.responseText;
                 if (response == "doesn't exist") {
-                    window.open("http://localhost:8080/failed");
+                    window.open(Url + "/failed");
                 }
                 else if (response == 'used') {
-                    window.open("http://localhost:8080/used")
+                    window.open(Url + "/used")
                 }
                 else {
-                    window.open("http://localhost:8080/response")
+                    window.open(Url + "/response")
                 }
             }
             else {
