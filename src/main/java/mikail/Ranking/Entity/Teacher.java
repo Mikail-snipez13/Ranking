@@ -50,18 +50,42 @@ public class Teacher {
     private int dishonorable;
 
     public void increaseBeauty() {
+        beauty++;
+    }
+
+    public void increaseJoker() {
         joker++;
     }
 
-    public void increaseSmart() {
+    public void increaseUnprepared() {
         unprepared++;
     }
 
-    public void increaseNice() {
+    public void increaseLate() {
         late++;
     }
 
-    public void increaseSevere() {
+    public void increaseSpoiled() {
         spoiled++;
+    }
+
+    public void increaseParty() {
+        party++;
+    }
+
+    public void increaseSmart() {
+        smart++;
+    }
+
+    public void increaseNoMention() {
+        noMention++;
+    }
+
+    public void increaseNoInTime() {
+        noInTime++;
+    }
+
+    public void increaseDishonorable() {
+        dishonorable++;
     }
 }

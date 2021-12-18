@@ -7,9 +7,7 @@ import mikail.Ranking.Factory.TicketFactory;
 import mikail.Ranking.Repository.PageRepository;
 import mikail.Ranking.Repository.TeacherRepository;
 import mikail.Ranking.Repository.TicketRepository;
-import net.bytebuddy.implementation.auxiliary.AuxiliaryType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -68,7 +66,7 @@ public class TicketController {
                         //update joker
                         if (teacherRepository.existsById(joker)) {
                             Teacher teacher = teacherRepository.getById(joker);
-                            teacher.increaseBeauty();
+                            teacher.increaseJoker();
                             teacherRepository.save(teacher);
                         }
                         else {
@@ -78,7 +76,7 @@ public class TicketController {
                         //update unprepared
                         if (teacherRepository.existsById(unprepared)) {
                             Teacher teacher = teacherRepository.getById(unprepared);
-                            teacher.increaseSmart();
+                            teacher.increaseUnprepared();
                             teacherRepository.save(teacher);
                         }
                         else {
@@ -88,7 +86,7 @@ public class TicketController {
                         //update late
                         if (teacherRepository.existsById(late)) {
                             Teacher teacher = teacherRepository.getById(late);
-                            teacher.increaseNice();
+                            teacher.increaseLate();
                             teacherRepository.save(teacher);
                         }
                         else {
@@ -98,7 +96,7 @@ public class TicketController {
                         //update mad
                         if (teacherRepository.existsById(spoiled)) {
                             Teacher teacher = teacherRepository.getById(spoiled);
-                            teacher.increaseSevere();
+                            teacher.increaseSpoiled();
                             teacherRepository.save(teacher);
                         }
                         else {
@@ -108,7 +106,7 @@ public class TicketController {
                         //update party
                         if (teacherRepository.existsById(party)) {
                             Teacher teacher = teacherRepository.getById(party);
-                            teacher.increaseSevere();
+                            teacher.increaseParty();
                             teacherRepository.save(teacher);
                         }
                         else {
@@ -118,7 +116,7 @@ public class TicketController {
                         //update smart
                         if (teacherRepository.existsById(smart)) {
                             Teacher teacher = teacherRepository.getById(smart);
-                            teacher.increaseSevere();
+                            teacher.increaseSmart();
                             teacherRepository.save(teacher);
                         }
                         else {
@@ -128,7 +126,7 @@ public class TicketController {
                         //update beauty
                         if (teacherRepository.existsById(beauty)) {
                             Teacher teacher = teacherRepository.getById(beauty);
-                            teacher.increaseSevere();
+                            teacher.increaseBeauty();
                             teacherRepository.save(teacher);
                         }
                         else {
@@ -138,7 +136,7 @@ public class TicketController {
                         //update noMention
                         if (teacherRepository.existsById(noMention)) {
                             Teacher teacher = teacherRepository.getById(noMention);
-                            teacher.increaseSevere();
+                            teacher.increaseNoMention();
                             teacherRepository.save(teacher);
                         }
                         else {
@@ -148,7 +146,7 @@ public class TicketController {
                         //update noInTime
                         if (teacherRepository.existsById(noInTime)) {
                             Teacher teacher = teacherRepository.getById(noInTime);
-                            teacher.increaseSevere();
+                            teacher.increaseNoInTime();
                             teacherRepository.save(teacher);
                         }
                         else {
@@ -158,7 +156,7 @@ public class TicketController {
                         //update dishonorable
                         if (teacherRepository.existsById(dishonorable)) {
                             Teacher teacher = teacherRepository.getById(dishonorable);
-                            teacher.increaseSevere();
+                            teacher.increaseDishonorable();
                             teacherRepository.save(teacher);
                         }
                         else {
