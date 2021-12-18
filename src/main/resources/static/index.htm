@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8>
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+        <style>
+            body {
+                background-color: black;
+                padding: 0px;
+                font-family: 'Ubuntu', sans-serif;
+                color: white;
+            }
+
+            header {
+               background-color: rgb(27, 116, 233);
+               color: white;
+               margin: 0px;
+            }
+
+            header div {
+                text-align: center;
+                padding: 10px;
+            }
+
+            .voting {
+                background-color: rgb(12, 149, 149);
+                border-radius: 10px;
+                padding: 10px;
+                margin: 10px;
+                width: 400px;
+            }
+            @media screen and (max-width: 4000px) {
+                .outer {
+                    text-align: center;
+                    display: flex;
+                    flex-direction: row;
+                }
+            }
+            @media screen and (max-width: 900px) {
+                .outer {
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                }
+            }
+
+            .styled {
+                border: 0;
+                line-height: 2.5;
+                padding: 0 20px;
+                font-size: 1rem;
+                text-align: center;
+                color: #fff;
+                text-shadow: 1px 1px 1px #000;
+                border-radius: 10px;
+                background-color: rgb(0, 220, 110);
+                background-image: linear-gradient(to top left,
+                                                rgba(0, 0, 0, .2),
+                                                rgba(0, 0, 0, .2) 30%,
+                                                rgba(0, 0, 0, 0));
+                box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                            inset -2px -2px 3px rgba(0, 0, 0, .6);
+            }
+
+            .styled:hover {
+                background-color: rgb(3, 246, 194);
+            }
+
+            .styled:active {
+                box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                            inset 2px 2px 3px rgba(0, 0, 0, .6);
+            }
+
+            .ticket {
+                font-size: 1.5rem;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- HEADER -->
+        <header>
+            <div>
+                <h1>Ranking von Lehrern</h1>
+                <p>Stimmt ab!</p>
+            </div>
+        </header>
+
+        <!-- SECTION -->
+        <section>
+            <div>
+                <p id="count">0 mal aufgerufen</p>
+            </div>
+            <div class="rank-tabel"></div>
+            <div class="outer"> 
+                <div class="voting">
+                    <h2>Der schönste Lehrer</h2>
+                    <div><input list="teacher" id="beauty"></div>
+                </div>
+                <div class="voting">
+                    <h2>Der engagiertester Lehrer</h2>
+                    <input list="teacher" id="smart">
+                </div>
+                <div class="voting">
+                    <h2>Der netteste Lehrer</h2>
+                    <input list="teacher" id="nice">
+                </div>
+                <div class="voting">
+                    <h2>Der strengste Lehrer</h2>
+                    <input list="teacher" id="severe">
+                </div>
+            </div>
+            <input type="text" class="ticket" maxlength="6" id="ticketinput" placeholder="TICKET" style="text-transform: uppercase;">
+            <input type="button" class="styled" value="Stimme abgeben" onclick="sendTicket()">
+            <p id="error"></p>
+            <datalist id=teacher>
+                <option value="Bertl"></option>
+                <option value="Karl"></option>
+                <option value="Fink"></option>
+                <option value="Haberl"></option>
+                <option value="Böhm"></option>
+                <option value="Bravo"></option>
+                <option value="Beros"></option>
+                <option value="Ciesla"></option>
+                <option value="Dechansreiter"></option>
+                <option value="Diesler"></option>
+                <option value="Fuchs"></option>
+                <option value="Filser"></option>
+                <option value="Fuchs-Haid"></option>
+                <option value="Fürstner"></option>
+                <option value="Geiger"></option>
+                <option value="Geuß"></option>
+                <option value="Graf"></option>
+                <option value="Glöckler"></option>
+                <option value="Haidl"></option>
+                <option value="Heringer"></option>
+                <option value="Hilber"></option>
+                <option value="Helmes"></option>
+                <option value="Hopf"></option>
+                <option value="Hurler-Dobmann"></option>
+                <option value="Hylla"></option>
+                <option value="Herzog"></option>
+                <option value="Janda">Karl</option>
+                <option value="Karl"></option>
+                <option value="Koch"></option>
+                <option value="Köglmeier"></option>
+                <option value="Kürsten"></option>
+                <option value="Linke"></option>
+                <option value="Melzer"></option>
+                <option value="Morando"></option>
+                <option value="Meier"></option>
+                <option value="Mozart"></option>
+                <option value="Mayr"></option>
+                <option value="Ostermeier"></option>
+                <option value="Pohl"></option>
+                <option value="Qufoku"></option>
+                <option value="Reither"></option>
+                <option value="Rohrmoser"></option>
+                <option value="Röder"></option>
+                <option value="Romberg"></option>
+                <option value="Rottmann"></option>
+                <option value="Schatto"></option>
+                <option value="Sagmeister"></option>
+                <option value="Sammer"></option>
+                <option value="Schubert"></option>
+                <option value="Schuster"></option>
+                <option value="Schleicher"></option>
+                <option value="Schmid"></option>
+                <option value="Siegl"></option>
+                <option value="Slotta"></option>
+                <option value="Schmitt"></option>
+                <option value="Schneider"></option>
+                <option value="Sprik"></option>
+                <option value="Sauer"></option>
+                <option value="Steiger"></option>
+                <option value="Schmaus"></option>
+                <option value="Tatschke"></option>
+                <option value="Utesch"></option>
+                <option value="Wagner"></option>
+                <option value="Weishaupt"></option>
+                <option value="Yurchak"></option>
+                <option value="Zink"></option>
+                <option value="Satim"></option>
+                <option value="Eiser"></option>
+                <option value="Weig"></option>
+                <option value="Frohn"></option>
+            </datalist>
+        </section>
+
+
+    </body>
+
+    <!-- SCRIPT -->
+    <script type="text/javascript">
+        var p = document.getElementById("count");
+        var interval = setInterval(loadCount, 30000);
+        var xmlHttp = new XMLHttpRequest();
+
+        function loadCount() {
+            xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", "http://localhost:8080/page", false);
+            xmlHttp.send(null);
+            text = xmlHttp.responseText.replace("[", "").replace("]", "");  
+            p.innerHTML = text + " mal aufgerufen"; 
+        }
+
+        function sendTicket() {
+            xmlHttp = new XMLHttpRequest();
+            var ticket = document.getElementById('ticketinput').value;
+            var smart = document.getElementById('smart').value;
+            var beauty = document.getElementById('beauty').value;
+            var nice = document.getElementById('nice').value;
+            var severe = document.getElementById('severe').value;
+            var url = "http://localhost:8080/tickets?mode=use&id=0"
+
+            if (ticket != "" && smart != "" && beauty != "" && nice != "" && severe != "") {
+                url = "http://localhost:8080/tickets?mode=use&id=" + ticket + "&smart=" + smart + "&beauty=" + beauty + "&nice=" + nice + "&severe=" + severe;
+                xmlHttp.open("GET", url , false);
+                xmlHttp.send(null);
+                response = xmlHttp.responseText;
+                if (response == "doesn't exist") {
+                    window.open("http://localhost:8080/failed");
+                }
+                else if (response == 'used') {
+                    window.open("http://localhost:8080/used")
+                }
+                else {
+                    window.open("http://localhost:8080/response")
+                }
+            }
+            else {
+                document.getElementById('error').innerHTML = "Konnte nicht gesendet werden. Überprüfe deine Angaben"
+            }
+
+        }
+
+    </script>
+</html>
