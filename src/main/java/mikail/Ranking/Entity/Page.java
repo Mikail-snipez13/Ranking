@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Page {
 
     @Id
-    private Long id;
+    private String id;
 
     private int views;
 

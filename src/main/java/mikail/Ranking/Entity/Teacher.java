@@ -19,31 +19,49 @@ public class Teacher {
     @Column(name = "id", nullable = false)
     private String id;
 
-    @Column(name = "beauty")
-    private int beauty;
+    @Column(name = "joker")
+    private int joker;
+
+    @Column(name = "unprepared")
+    private int unprepared;
+
+    @Column(name = "late")
+    private int late;
+
+    @Column(name = "spoiled")
+    private int spoiled;
+
+    @Column(name = "party")
+    private int party;
 
     @Column(name = "smart")
     private int smart;
 
-    @Column(name = "nice")
-    private int nice;
+    @Column(name = "beauty")
+    private int beauty;
 
-    @Column(name = "severe")
-    private int severe;
+    @Column(name = "no_mention")
+    private int noMention;
+
+    @Column(name = "no_in_time")
+    private int noInTime;
+
+    @Column(name = "dishonorable")
+    private int dishonorable;
 
     public void increaseBeauty() {
-        beauty++;
+        joker++;
     }
 
     public void increaseSmart() {
-        smart++;
+        unprepared++;
     }
 
     public void increaseNice() {
-        nice++;
+        late++;
     }
 
     public void increaseSevere() {
-        severe++;
+        spoiled++;
     }
 }

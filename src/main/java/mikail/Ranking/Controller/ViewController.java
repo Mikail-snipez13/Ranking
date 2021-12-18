@@ -27,8 +27,8 @@ public class ViewController {
     public ModelAndView view() {
         ModelAndView view = new ModelAndView();
         view.setViewName("index.htm");
-        if (pageRepository.existsById(1L)) {
-            Page page = pageRepository.getById(1L);
+        if (pageRepository.existsById("views")) {
+            Page page = pageRepository.getById("views");
             page.increaseViews();
             pageRepository.save(page);
         }

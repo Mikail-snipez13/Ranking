@@ -7,6 +7,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
         <style>
             body {
+                margin: 0px;
                 background-color: black;
                 padding: 0px;
                 font-family: 'Ubuntu', sans-serif;
@@ -77,6 +78,9 @@
                 font-size: 1.5rem;
                 border-radius: 5px;
             }
+            .counter p{
+                margin: 0px;
+            }
         </style>
     </head>
     <body>
@@ -91,26 +95,58 @@
 
         <!-- SECTION -->
         <section>
-            <div>
+            <div class="counter">
                 <p id="count">0 mal aufgerufen</p>
+                <br>
+                <p id="requests">0 haben abgestimmt</p>
             </div>
             <div class="rank-tabel"></div>
             <div class="outer"> 
+
+                <!-- KATEGORIEN -->
                 <div class="voting">
-                    <h2>Der schönste Lehrer</h2>
+                    <h2>Mein Joker bei "Wer wird Millionär"</h2>
+                    <div><input list="teacher" id="joker"></div>
+                </div>
+                <div class="voting">
+                    <h2>Überlegt sich den Unterricht während der Stunde</h2>
+                    <input list="teacher" id="unprepared">
+                </div>
+                <div class="voting">
+                    <h2>Wer gibt Klausuren mit Staubschicht</h2>
+                    <input list="teacher" id="late">
+                </div>
+                <div class="voting">
+                    <h2>Total verpeilt</h2>
+                    <input list="teacher" id="spoiled">
+                </div>
+            </div>
+            <div class="outer">
+                <div class="voting">
+                    <h2>Größter Discolöwe/PartyMaus</h2>
+                    <div><input list="teacher" id="party"></div>
+                </div>
+                <div class="voting">
+                    <h2>Engagierteste</h2>
+                    <div><input list="teacher" id="smart"></div>
+                </div>
+                <div class="voting">
+                    <h2>Schönling</h2>
                     <div><input list="teacher" id="beauty"></div>
                 </div>
                 <div class="voting">
-                    <h2>Der engagiertester Lehrer</h2>
-                    <input list="teacher" id="smart">
+                    <h2>Will nicht in die Abizeitung</h2>
+                    <div><input list="teacher" id="noMention"></div>
+                </div>
+            </div>
+            <div class="outer">
+                <div class="voting">
+                    <h2>Der Zuspätkommer</h2>
+                    <div><input list="teacher" id="noInTime"></div>
                 </div>
                 <div class="voting">
-                    <h2>Der netteste Lehrer</h2>
-                    <input list="teacher" id="nice">
-                </div>
-                <div class="voting">
-                    <h2>Der strengste Lehrer</h2>
-                    <input list="teacher" id="severe">
+                    <h2>Der Nichts-Gönner</h2>
+                    <div><input list="teacher" id="dishonorable"></div>
                 </div>
             </div>
             <input type="text" class="ticket" maxlength="6" id="ticketinput" placeholder="TICKET" style="text-transform: uppercase;">
@@ -205,19 +241,35 @@
             xmlHttp.send(null);
             text = xmlHttp.responseText.replace("[", "").replace("]", "");  
             p.innerHTML = text + " mal aufgerufen"; 
+
+            xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", "http://localhost:8080/requests", false);
+            xmlHttp.send(null);
+            text = xmlHttp.responseText.replace("[", "").replace("]", "") + " haben abgestimmt";
+            document.getElementById('requests').innerHTML = text;
         }
 
         function sendTicket() {
             xmlHttp = new XMLHttpRequest();
             var ticket = document.getElementById('ticketinput').value;
+            
+            var unprepared = document.getElementById('unprepared').value;
+            var joker = document.getElementById('joker').value;
+            var late = document.getElementById('late').value;
+            var spoiled = document.getElementById('spoiled').value;
+            var party = document.getElementById('party').value;
             var smart = document.getElementById('smart').value;
             var beauty = document.getElementById('beauty').value;
-            var nice = document.getElementById('nice').value;
-            var severe = document.getElementById('severe').value;
+            var noMention = document.getElementById('noMention').value;
+            var noInTime = document.getElementById('noInTime').value;
+            var dishonorable = document.getElementById('dishonorable').value;
+
             var url = "http://localhost:8080/tickets?mode=use&id=0"
 
-            if (ticket != "" && smart != "" && beauty != "" && nice != "" && severe != "") {
-                url = "http://localhost:8080/tickets?mode=use&id=" + ticket + "&smart=" + smart + "&beauty=" + beauty + "&nice=" + nice + "&severe=" + severe;
+            if (ticket != "" && unprepared != "" && joker != "" && late != "" && spoiled != "" && party != "" && smart != "" && beauty != "" && noMention != "" && noInTime != "" && dishonorable != "") {
+                url = "http://localhost:8080/tickets?mode=use&id=" + ticket + "&unprepared=" + unprepared + "&joker=" + joker 
+                        + "&late=" + late + "&spoiled=" + spoiled + "&party=" + party + "&smart=" + smart + "&beauty=" + beauty 
+                        + "&noMention=" + noMention + "&noInTime=" + noInTime + "&dishonorable=" + dishonorable;
                 xmlHttp.open("GET", url , false);
                 xmlHttp.send(null);
                 response = xmlHttp.responseText;

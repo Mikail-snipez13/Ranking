@@ -1,5 +1,6 @@
 package mikail.Ranking.Controller;
 
+import ch.qos.logback.classic.spi.EventArgUtil;
 import mikail.Ranking.Entity.Page;
 import mikail.Ranking.Repository.PageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +18,28 @@ public class PageController {
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public int[] getCount() {
-        if (pageRepository.existsById(1L)) {
+        if (pageRepository.existsById("views")) {
             int[] i = new int[1];
-            i[0] = pageRepository.getById(1L).getViews();
+            i[0] = pageRepository.getById("views").getViews();
             return i;
         }
         else {
-            pageRepository.save(new Page(1L, 1));
+            pageRepository.save(new Page("views", 1));
             int[] i = new int[1];
             i[0] = 1;
+            return i;
+        }
+    }
+
+    @RequestMapping(value = "/requests", method = RequestMethod.GET)
+    public int[] getRequests() {
+        int[] i = new int[1];
+        if (pageRepository.existsById("votes")) {
+            i[0] = pageRepository.getById("votes").getViews();
+            return i;
+        }
+        else {
+            pageRepository.save(new Page("votes", 0));
             return i;
         }
     }
