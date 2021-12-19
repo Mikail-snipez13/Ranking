@@ -217,6 +217,39 @@ public class TeacherController {
         return result;
     }
 
+    @RequestMapping(value = "/teacher/best/beauty")
+    public List<String> getBestBeauty() {
+        List<Teacher> teacherList = teacherRepository.findAll();
+        HashMap<String, Integer> jokerMap = new HashMap<>();
+
+        for (Teacher teacher : teacherList) {
+            jokerMap.put(teacher.getId(), teacher.getBeauty());
+        }
+
+        List<Integer> best = new ArrayList<>(jokerMap.values());
+        List<String> bestName = new ArrayList<>();
+        List<String> result = new ArrayList<>();
+
+        Collections.sort(best);
+        Collections.reverse(best);
+
+        for (int n = 0; n < jokerMap.size(); n++) {
+            for (String i : jokerMap.keySet()) {
+                int current = jokerMap.get(i);
+                if (best.get(n) == current) {
+                    bestName.add(i);
+                }
+            }
+        }
+        Iterator<String> it = bestName.iterator();
+        if(bestName.size() > 2) {
+            for (int i = 0; i < 3; i++) {
+                result.add(it.next());
+            }
+        }
+        return result;
+    }
+
     @RequestMapping(value = "/teacher/best/no_mention")
     public List<String> getBestNoMention() {
         List<Teacher> teacherList = teacherRepository.findAll();

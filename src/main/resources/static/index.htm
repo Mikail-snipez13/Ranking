@@ -152,6 +152,7 @@
             <input type="text" class="ticket" maxlength="6" id="ticketinput" placeholder="TICKET" style="text-transform: uppercase;">
             <input type="button" class="styled" value="Stimme abgeben" onclick="sendTicket()">
             <p id="error"></p>
+            <p>Entwicklt von Mikail Gündüz und Sven Lange der F12Tb</p>
             <datalist id=teacher>
                 <option value="Bertl"></option>
                 <option value="Karl"></option>
@@ -256,18 +257,18 @@
 
         function sendTicket() {
             xmlHttp = new XMLHttpRequest();
-            var ticket = document.getElementById('ticketinput').value;
+            var ticket = document.getElementById('ticketinput').value.toUpperCase();
             
-            var unprepared = document.getElementById('unprepared').value;
-            var joker = document.getElementById('joker').value;
-            var late = document.getElementById('late').value;
-            var spoiled = document.getElementById('spoiled').value;
-            var party = document.getElementById('party').value;
-            var smart = document.getElementById('smart').value;
-            var beauty = document.getElementById('beauty').value;
-            var noMention = document.getElementById('noMention').value;
-            var noInTime = document.getElementById('noInTime').value;
-            var dishonorable = document.getElementById('dishonorable').value;
+            var unprepared = document.getElementById('unprepared').value.toLowerCase();
+            var joker = document.getElementById('joker').value.toLowerCase();
+            var late = document.getElementById('late').value.toLowerCase();
+            var spoiled = document.getElementById('spoiled').value.toLowerCase();
+            var party = document.getElementById('party').value.toLowerCase();
+            var smart = document.getElementById('smart').value.toLowerCase();
+            var beauty = document.getElementById('beauty').value.toLowerCase();
+            var noMention = document.getElementById('noMention').value.toLowerCase();
+            var noInTime = document.getElementById('noInTime').value.toLowerCase();
+            var dishonorable = document.getElementById('dishonorable').value.toLowerCase();
 
             var url = Url + "/tickets?mode=use&id=0";
 

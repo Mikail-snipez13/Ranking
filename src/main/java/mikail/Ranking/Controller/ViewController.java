@@ -23,7 +23,7 @@ public class ViewController {
     @Autowired
     private PageController pageController;
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView view() {
         ModelAndView view = new ModelAndView();
         view.setViewName("index.htm");
