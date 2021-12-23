@@ -55,4 +55,11 @@ public class ViewController {
         view.setViewName("used.htm");
         return view;
     }
+
+    @RequestMapping(value = "/privacy", method = RequestMethod.GET)
+    public ModelAndView privacy() {
+        ModelAndView view = new ModelAndView();
+        view.setViewName("privacy.htm");
+        return view;
+    }
 }

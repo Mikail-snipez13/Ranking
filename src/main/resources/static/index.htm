@@ -2,95 +2,26 @@
 <html>
     <head>
         <meta charset=utf-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="preconnect" href="https://fonts.googleapis.com"> 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-        <style>
-            body {
-                margin: 0px;
-                background-color: black;
-                padding: 0px;
-                font-family: 'Ubuntu', sans-serif;
-                color: white;
-            }
-
-            header {
-               background-color: rgb(27, 116, 233);
-               color: white;
-               margin: 0px;
-            }
-
-            header div {
-                text-align: center;
-                padding: 10px;
-            }
-
-            .voting {
-                background-color: rgb(12, 149, 149);
-                border-radius: 10px;
-                padding: 10px;
-                margin: 10px;
-                width: 400px;
-            }
-            @media screen and (max-width: 4000px) {
-                .outer {
-                    text-align: center;
-                    display: flex;
-                    flex-direction: row;
-                }
-            }
-            @media screen and (max-width: 900px) {
-                .outer {
-                    display: flex;
-                    flex-direction: column;
-                    text-align: center;
-                }
-            }
-
-            .styled {
-                border: 0;
-                line-height: 2.5;
-                padding: 0 20px;
-                font-size: 1rem;
-                text-align: center;
-                color: #fff;
-                text-shadow: 1px 1px 1px #000;
-                border-radius: 10px;
-                background-color: rgb(0, 220, 110);
-                background-image: linear-gradient(to top left,
-                                                rgba(0, 0, 0, .2),
-                                                rgba(0, 0, 0, .2) 30%,
-                                                rgba(0, 0, 0, 0));
-                box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
-                            inset -2px -2px 3px rgba(0, 0, 0, .6);
-            }
-
-            .styled:hover {
-                background-color: rgb(3, 246, 194);
-            }
-
-            .styled:active {
-                box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
-                            inset 2px 2px 3px rgba(0, 0, 0, .6);
-            }
-
-            .ticket {
-                font-size: 1.5rem;
-                border-radius: 5px;
-            }
-            .counter p{
-                margin: 0px;
-            }
-        </style>
+        <link rel="stylesheet" href="home_style.css">
     </head>
     <body>
 
         <!-- HEADER -->
         <header>
-            <div>
-                <h1>Ranking von Lehrern</h1>
-                <p>Stimmt ab!</p>
+            <div style="display: flex; flex-direction: row;">
+                <div>
+                    <h1>Ranking von Lehrern</h1>
+                    <p>Stimmt ab!</p>
+                </div>
+                <div>
+                    <img src="krone.svg" alt="krone" class="icon">
+                </div>
             </div>
+            
         </header>
 
         <!-- SECTION -->
@@ -100,7 +31,6 @@
                 <br>
                 <p id="requests">0 haben abgestimmt</p>
             </div>
-            <div class="rank-tabel"></div>
             <div class="outer"> 
 
                 <!-- KATEGORIEN -->
@@ -149,10 +79,25 @@
                     <div><input list="teacher" id="dishonorable"></div>
                 </div>
             </div>
-            <input type="text" class="ticket" maxlength="6" id="ticketinput" placeholder="TICKET" style="text-transform: uppercase;">
-            <input type="button" class="styled" value="Stimme abgeben" onclick="sendTicket()">
-            <p id="error" style="color: red;"></p>
-            <p>Entwickelt von Mikail Gündüz und Sven Lange der F12Tb <a href="/privacy.htm"> Datenschutzerklärung</a></p>
+            <div>
+                <div style="display: flex; flex-direction: row; justify-content: space-around;">
+                    <div>
+                        <input type="text" class="ticket" maxlength="6" id="ticketinput" placeholder="TICKET" style="text-transform: uppercase;">
+                        <input type="button" class="styled" value="Stimme abgeben" onclick="sendTicket()">
+                    </div>
+                    
+                </div>
+                <div style="display: flex; flex-direction: row; justify-content: space-around;">
+                    <div>
+                        <p id="error" style="color: red;"></p>
+                        <p>Entwickelt von Mikail Gündüz und Sven Lange der F12Tb</p>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+
             <datalist id=teacher>
                 <option value="Bertl"></option>
                 <option value="Karl"></option>
@@ -228,73 +173,14 @@
             </datalist>
         </section>
 
-
+        <!-- FOOTER -->
+        <footer>
+            <div style="display: flex; flex-direction: row; justify-content: space-around;"> 
+                <p onclick="window.open('/privacy');" style="text-decoration: underline;">Datenschutzerklärung</p>
+            </div>
+        </footer>
     </body>
 
     <!-- SCRIPT -->
-    <script type="text/javascript">
-
-        const Url = 'https://teacherranking.ddns.net'
-
-        var p = document.getElementById("count");
-        var interval = setInterval(loadCount, 30000);
-        var xmlHttp = new XMLHttpRequest();
-
-        function loadCount() {
-            xmlHttp = new XMLHttpRequest();
-            url = Url + "/page";
-            xmlHttp.open("GET", url, false);
-            xmlHttp.send(null);
-            text = xmlHttp.responseText.replace("[", "").replace("]", "");  
-            p.innerHTML = text + " mal aufgerufen"; 
-
-            xmlHttp = new XMLHttpRequest();
-            url = Url + "/requests"
-            xmlHttp.open("GET", url, false);
-            xmlHttp.send(null);
-            text = xmlHttp.responseText.replace("[", "").replace("]", "") + " haben abgestimmt";
-            document.getElementById('requests').innerHTML = text;
-        }
-
-        function sendTicket() {
-            xmlHttp = new XMLHttpRequest();
-            var ticket = document.getElementById('ticketinput').value.toUpperCase();
-            
-            var unprepared = document.getElementById('unprepared').value.toLowerCase();
-            var joker = document.getElementById('joker').value.toLowerCase();
-            var late = document.getElementById('late').value.toLowerCase();
-            var spoiled = document.getElementById('spoiled').value.toLowerCase();
-            var party = document.getElementById('party').value.toLowerCase();
-            var smart = document.getElementById('smart').value.toLowerCase();
-            var beauty = document.getElementById('beauty').value.toLowerCase();
-            var noMention = document.getElementById('noMention').value.toLowerCase();
-            var noInTime = document.getElementById('noInTime').value.toLowerCase();
-            var dishonorable = document.getElementById('dishonorable').value.toLowerCase();
-
-            var url = Url + "/tickets?mode=use&id=0";
-
-            if (ticket != "" && unprepared != "" && joker != "" && late != "" && spoiled != "" && party != "" && smart != "" && beauty != "" && noMention != "" && noInTime != "" && dishonorable != "") {
-                url = Url + "/tickets?mode=use&id=" + ticket + "&unprepared=" + unprepared + "&joker=" + joker 
-                        + "&late=" + late + "&spoiled=" + spoiled + "&party=" + party + "&smart=" + smart + "&beauty=" + beauty 
-                        + "&noMention=" + noMention + "&noInTime=" + noInTime + "&dishonorable=" + dishonorable;
-                xmlHttp.open("GET", url , false);
-                xmlHttp.send(null);
-                response = xmlHttp.responseText;
-                if (response == "doesn't exist") {
-                    window.open(Url + "/failed");
-                }
-                else if (response == 'used') {
-                    window.open(Url + "/used")
-                }
-                else {
-                    window.open(Url + "/response")
-                }
-            }
-            else {
-                document.getElementById('error').innerHTML = "Konnte nicht gesendet werden. Überprüfe deine Angaben"
-            }
-
-        }
-
-    </script>
+    <script type="text/javascript" src="home_script.js"></script>
 </html>
