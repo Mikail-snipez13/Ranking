@@ -4,8 +4,8 @@ You can define your own categories and the persons can vote for each category.
 
 ## Content
 1. [API](#API)
-   1. [Token](###Token)
-   2. [Ranking](###Ranking list)
+   1. [Token](#Token)
+   2. [Ranking](#Ranking list)
 
 ## API
 ### Token
@@ -24,14 +24,31 @@ return -> Token for Voting (e.g. XDFAEF)
 
 #### Status Mode
 Request type -> GET <br>
-Parameter needed-> mode - id <br>
-URL -> https://teacherranking.ddns.net/tickets?mode=mode <br>
-return -> boolean - whether it was used
+
+| Parameter    | Description      |
+|--------------|------------------|
+| mode         | must be 'status' |
+| id           | ticket token     |
+
+URL -> https://teacherranking.ddns.net/tickets?mode=status&id={token} <br>
+return -> String - false | used | doesn't exist
 
 #### Use Mode
 Request type -> POST <br>
-Parameter needed-> mode - id - teacher - joker - smart - noMention - dishonorable <br>
-URL -> https://teacherranking.ddns.net/tickets?mode=mode <br>
-return -> boolean - whether it was used
 
-### Ranking list
+| Parameter    | Description                    |
+|--------------|--------------------------------|
+| mode         | must be 'use'                  |
+| id           | ticket token                   |
+| joker        | teacher name to increase value |
+| unprepared   | teacher name to increase value |
+| late         | teacher name to increase value |
+| spoiled      | teacher name to increase value |
+| party        | teacher name to increase value |
+| smart        | teacher name to increase value |
+| noMention    | teacher name to increase value |
+| noInTime     | teacher name to increase value |
+| dishonorable | teacher name to increase value |
+
+URL -> https://teacherranking.ddns.net/tickets?mode=use&id={token}&joker={teacher}&unprepared={teacher}&late={teacher}&spoiled={teacher}&party={teacher}&smart={teacher}&beauty={teacher}&noMention={teacher}&noInTime={teacher}&dishonorable={teacher} <br>
+return -> nothing

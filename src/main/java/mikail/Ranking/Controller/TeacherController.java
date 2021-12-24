@@ -118,7 +118,7 @@ public class TeacherController {
         return result;
     }
 
-    @RequestMapping(value = "/teacher/best/spoiled")
+    @RequestMapping(value = "/teacher/best/unreliable")
     public List<String> getBestSpoiled() {
         List<Teacher> teacherList = teacherRepository.findAll();
         HashMap<String, Integer> jokerMap = new HashMap<>();
@@ -250,7 +250,7 @@ public class TeacherController {
         return result;
     }
 
-    @RequestMapping(value = "/teacher/best/no_mention")
+    @RequestMapping(value = "/teacher/best/noMention")
     public List<String> getBestNoMention() {
         List<Teacher> teacherList = teacherRepository.findAll();
         HashMap<String, Integer> jokerMap = new HashMap<>();
