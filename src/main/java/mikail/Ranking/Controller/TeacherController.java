@@ -283,7 +283,7 @@ public class TeacherController {
         return result;
     }
 
-    @RequestMapping(value = "/teacher/best/NoInTime")
+    @RequestMapping(value = "/teacher/best/noInTime")
     public List<String> getBestNoInTime() {
         List<Teacher> teacherList = teacherRepository.findAll();
         HashMap<String, Integer> jokerMap = new HashMap<>();

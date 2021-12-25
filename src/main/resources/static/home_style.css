@@ -49,6 +49,7 @@ header div {
     margin: 10px;
     width: 23%;
 }
+
 @media screen and (max-width: 4000px) {
     .outer {
         text-align: center;
@@ -103,6 +104,7 @@ header div {
     font-size: 1.5rem;
     border-radius: 5px;
 }
+
 .counter p{
     margin: auto;
     width: 50%;

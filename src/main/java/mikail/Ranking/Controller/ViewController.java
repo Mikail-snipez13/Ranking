@@ -62,4 +62,16 @@ public class ViewController {
         view.setViewName("privacy.htm");
         return view;
     }
+
+    @RequestMapping(value = "/ranking", method = RequestMethod.GET)
+    public ModelAndView ranking() {
+        ModelAndView view = new ModelAndView();
+        view.setViewName("ranking.htm");
+        if (pageRepository.existsById("ranking_views")) {
+            Page page = pageRepository.getById("ranking_views");
+            page.increaseViews();
+            pageRepository.save(page);
+        }
+        return view;
+    }
 }

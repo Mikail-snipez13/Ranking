@@ -31,6 +31,21 @@ public class PageController {
         }
     }
 
+    @RequestMapping(value = "/page/ranking", method = RequestMethod.GET)
+    public int[] getRankingCount() {
+        if (pageRepository.existsById("ranking_views")) {
+            int[] i = new int[1];
+            i[0] = pageRepository.getById("ranking_views").getViews();
+            return i;
+        }
+        else {
+            pageRepository.save(new Page("ranking_views", 1));
+            int[] i = new int[1];
+            i[0] = 1;
+            return i;
+        }
+    }
+
     @RequestMapping(value = "/requests", method = RequestMethod.GET)
     public int[] getRequests() {
         int[] i = new int[1];
