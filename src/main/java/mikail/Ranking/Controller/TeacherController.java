@@ -46,7 +46,9 @@ public class TeacherController {
         Iterator<String> it = bestName.iterator();
         if(bestName.size() > 2) {
             for (int i = 0; i < 3; i++) {
-                result.add(it.next());
+                //Capitalize name
+                String s = it.next();
+                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
             }
         }
         return result;
@@ -79,7 +81,9 @@ public class TeacherController {
         Iterator<String> it = bestName.iterator();
         if(bestName.size() > 2) {
             for (int i = 0; i < 3; i++) {
-                result.add(it.next());
+                //Capitalize name
+                String s = it.next();
+                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
             }
         }
         return result;
@@ -112,7 +116,9 @@ public class TeacherController {
         Iterator<String> it = bestName.iterator();
         if(bestName.size() > 2) {
             for (int i = 0; i < 3; i++) {
-                result.add(it.next());
+                //Capitalize name
+                String s = it.next();
+                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
             }
         }
         return result;
@@ -145,7 +151,9 @@ public class TeacherController {
         Iterator<String> it = bestName.iterator();
         if(bestName.size() > 2) {
             for (int i = 0; i < 3; i++) {
-                result.add(it.next());
+                //Capitalize name
+                String s = it.next();
+                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
             }
         }
         return result;
@@ -178,7 +186,9 @@ public class TeacherController {
         Iterator<String> it = bestName.iterator();
         if(bestName.size() > 2) {
             for (int i = 0; i < 3; i++) {
-                result.add(it.next());
+                //Capitalize name
+                String s = it.next();
+                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
             }
         }
         return result;
@@ -211,7 +221,9 @@ public class TeacherController {
         Iterator<String> it = bestName.iterator();
         if(bestName.size() > 2) {
             for (int i = 0; i < 3; i++) {
-                result.add(it.next());
+                //Capitalize name
+                String s = it.next();
+                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
             }
         }
         return result;
@@ -244,7 +256,9 @@ public class TeacherController {
         Iterator<String> it = bestName.iterator();
         if(bestName.size() > 2) {
             for (int i = 0; i < 3; i++) {
-                result.add(it.next());
+                //Capitalize name
+                String s = it.next();
+                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
             }
         }
         return result;
@@ -277,7 +291,9 @@ public class TeacherController {
         Iterator<String> it = bestName.iterator();
         if(bestName.size() > 2) {
             for (int i = 0; i < 3; i++) {
-                result.add(it.next());
+                //Capitalize name
+                String s = it.next();
+                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
             }
         }
         return result;
@@ -310,7 +326,9 @@ public class TeacherController {
         Iterator<String> it = bestName.iterator();
         if(bestName.size() > 2) {
             for (int i = 0; i < 3; i++) {
-                result.add(it.next());
+                //Capitalize name
+                String s = it.next();
+                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
             }
         }
         return result;
@@ -343,7 +361,9 @@ public class TeacherController {
         Iterator<String> it = bestName.iterator();
         if(bestName.size() > 2) {
             for (int i = 0; i < 3; i++) {
-                result.add(it.next());
+                //Capitalize name
+                String s = it.next();
+                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
             }
         }
         return result;
