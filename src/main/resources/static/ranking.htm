@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="home_style.css">
+    <link rel="stylesheet" href="ranking.css">
+    <title>Ranking</title>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <div style="display: flex; flex-direction: row;">
+            <div>
+                <h1>Ranking von Lehrern</h1>
+            </div>
+            <div>
+                <img src="krone.svg" alt="krone" class="icon">
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION -->
+    <section>
+
+        <!-- COUNTER -->
+        <div class="stats_list">
+            <p id="count">0 Aufrufe</p>
+            <p id="requests">0 Stimmen</p>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="collection">
+            <div class="ranking">
+                <h3>Der Joker bei "Wer wird Millionär"</h3>
+                <h4 id="joker1">1.</h4>
+                <h4 id="joker2">2.</h4>
+                <h4 id="joker3">3.</h4>
+            </div>
+            <div class="ranking">
+                <h3>Überlegt sich den Unterricht während der Stunde</h3>
+                <h4 id="unprepared1">1.</h4>
+                <h4 id="unprepared2">2.</h4>
+                <h4 id="unprepared3">3.</h4>
+            </div>
+            <div class="ranking">
+                <h3>Wer gibt Klausuren mit Staubschicht</h3>
+                <h4 id="late1">1.</h4>
+                <h4 id="late2">2.</h4>
+                <h4 id="late3">3.</h4>
+            </div>
+            <div class="ranking">
+                <h3>Total verpeilt</h3>
+                <h4 id="unreliable1">1.</h4>
+                <h4 id="unreliable2">2.</h4>
+                <h4 id="unreliable3">3.</h4>
+            </div>
+        </div>
+        <div class="collection">
+            <div class="ranking">
+                <h3>Größter Discolöwe/PartyMaus</h3>
+                <h4 id="party1">1.</h4>
+                <h4 id="party2">2.</h4>
+                <h4 id="party3">3.</h4>
+            </div>
+            <div class="ranking">
+                <h3>Engagierteste</h3>
+                <h4 id="smart1">1.</h4>
+                <h4 id="smart2">2.</h4>
+                <h4 id="smart3">3.</h4>
+            </div>
+            <div class="ranking">
+                <h3>Schönling</h3>
+                <h4 id="beauty1">1.</h4>
+                <h4 id="beauty2">2.</h4>
+                <h4 id="beauty3">3.</h4>
+            </div>
+            <div class="ranking">
+                <h3>Will nicht in die Abizeitung</h3>
+                <h4 id="noMention1">1.</h4>
+                <h4 id="noMention2">2.</h4>
+                <h4 id="noMention3">3.</h4>
+            </div>
+        </div>
+        <div class="collection">
+            <div class="ranking">
+                <h3>Der Zuspätkommer</h3>
+                <h4 id="noInTime1">1.</h4>
+                <h4 id="noInTime2">2.</h4>
+                <h4 id="noInTime3">3.</h4>
+            </div>
+            <div class="ranking">
+                <h3>Der Nichts-Gönner</h3>
+                <h4 id="dishonorable1">1.</h4>
+                <h4 id="dishonorable2">2.</h4>
+                <h4 id="dishonorable3">3.</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div style="display: flex; flex-direction: row; justify-content: space-around;"> 
+            <div style="text-align: center;">
+                <p>Entwickelt von Mikail Gündüz und Sven Lange der F12Tb</p>
+                <p onclick="window.open('/privacy');" style="text-decoration: underline;">Datenschutzerklärung</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="ranking_script.js"></script>
+</body>
+</html>
