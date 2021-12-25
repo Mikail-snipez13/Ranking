@@ -5,7 +5,6 @@ You can define your own categories and the persons can vote for each category.
 ## Content
 1. [API](#API)
    1. [Token](#Token)
-   2. [Ranking](#Ranking list)
 
 ## API
 ### Token
