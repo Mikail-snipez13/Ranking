@@ -21,338 +21,72 @@ public class TeacherController {
 
     @RequestMapping(value = "/teacher/best/joker")
     public List<String> getBestJoker() {
-        List<Teacher> teacherList = teacherRepository.findAll();
-        HashMap<String, Integer> jokerMap = new HashMap<>();
-
-        for (Teacher teacher : teacherList) {
-            jokerMap.put(teacher.getId(), teacher.getJoker());
-        }
-
-        List<Integer> best = new ArrayList<>(jokerMap.values());
-        List<String> bestName = new ArrayList<>();
-        List<String> result = new ArrayList<>();
-
-        Collections.sort(best);
-        Collections.reverse(best);
-
-        for (int n = 0; n < jokerMap.size(); n++) {
-            for (String i : jokerMap.keySet()) {
-                int current = jokerMap.get(i);
-                if (best.get(n) == current) {
-                    bestName.add(i);
-                }
-            }
-        }
-        Iterator<String> it = bestName.iterator();
-        if(bestName.size() > 2) {
-            for (int i = 0; i < 3; i++) {
-                //Capitalize name
-                String s = it.next();
-                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
-            }
-        }
-        return result;
+        return getBest(Category.JOKER);
     }
 
     @RequestMapping(value = "/teacher/best/unprepared")
     public List<String> getBestUnprepared() {
-        List<Teacher> teacherList = teacherRepository.findAll();
-        HashMap<String, Integer> jokerMap = new HashMap<>();
-
-        for (Teacher teacher : teacherList) {
-            jokerMap.put(teacher.getId(), teacher.getUnprepared());
-        }
-
-        List<Integer> best = new ArrayList<>(jokerMap.values());
-        List<String> bestName = new ArrayList<>();
-        List<String> result = new ArrayList<>();
-
-        Collections.sort(best);
-        Collections.reverse(best);
-
-        for (int n = 0; n < jokerMap.size(); n++) {
-            for (String i : jokerMap.keySet()) {
-                int current = jokerMap.get(i);
-                if (best.get(n) == current) {
-                    bestName.add(i);
-                }
-            }
-        }
-        Iterator<String> it = bestName.iterator();
-        if(bestName.size() > 2) {
-            for (int i = 0; i < 3; i++) {
-                //Capitalize name
-                String s = it.next();
-                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
-            }
-        }
-        return result;
+        return getBest(Category.UNPREPARED);
     }
 
     @RequestMapping(value = "/teacher/best/late")
     public List<String> getBestLate() {
-        List<Teacher> teacherList = teacherRepository.findAll();
-        HashMap<String, Integer> jokerMap = new HashMap<>();
-
-        for (Teacher teacher : teacherList) {
-            jokerMap.put(teacher.getId(), teacher.getLate());
-        }
-
-        List<Integer> best = new ArrayList<>(jokerMap.values());
-        List<String> bestName = new ArrayList<>();
-        List<String> result = new ArrayList<>();
-
-        Collections.sort(best);
-        Collections.reverse(best);
-
-        for (int n = 0; n < jokerMap.size(); n++) {
-            for (String i : jokerMap.keySet()) {
-                int current = jokerMap.get(i);
-                if (best.get(n) == current) {
-                    bestName.add(i);
-                }
-            }
-        }
-        Iterator<String> it = bestName.iterator();
-        if(bestName.size() > 2) {
-            for (int i = 0; i < 3; i++) {
-                //Capitalize name
-                String s = it.next();
-                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
-            }
-        }
-        return result;
+        return getBest(Category.LATE);
     }
 
     @RequestMapping(value = "/teacher/best/unreliable")
     public List<String> getBestSpoiled() {
-        List<Teacher> teacherList = teacherRepository.findAll();
-        HashMap<String, Integer> jokerMap = new HashMap<>();
-
-        for (Teacher teacher : teacherList) {
-            jokerMap.put(teacher.getId(), teacher.getSpoiled());
-        }
-
-        List<Integer> best = new ArrayList<>(jokerMap.values());
-        List<String> bestName = new ArrayList<>();
-        List<String> result = new ArrayList<>();
-
-        Collections.sort(best);
-        Collections.reverse(best);
-
-        for (int n = 0; n < jokerMap.size(); n++) {
-            for (String i : jokerMap.keySet()) {
-                int current = jokerMap.get(i);
-                if (best.get(n) == current) {
-                    bestName.add(i);
-                }
-            }
-        }
-        Iterator<String> it = bestName.iterator();
-        if(bestName.size() > 2) {
-            for (int i = 0; i < 3; i++) {
-                //Capitalize name
-                String s = it.next();
-                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
-            }
-        }
-        return result;
+        return getBest(Category.UNRELIABLE);
     }
 
     @RequestMapping(value = "/teacher/best/party")
     public List<String> getBestParty() {
-        List<Teacher> teacherList = teacherRepository.findAll();
-        HashMap<String, Integer> jokerMap = new HashMap<>();
-
-        for (Teacher teacher : teacherList) {
-            jokerMap.put(teacher.getId(), teacher.getParty());
-        }
-
-        List<Integer> best = new ArrayList<>(jokerMap.values());
-        List<String> bestName = new ArrayList<>();
-        List<String> result = new ArrayList<>();
-
-        Collections.sort(best);
-        Collections.reverse(best);
-
-        for (int n = 0; n < jokerMap.size(); n++) {
-            for (String i : jokerMap.keySet()) {
-                int current = jokerMap.get(i);
-                if (best.get(n) == current) {
-                    bestName.add(i);
-                }
-            }
-        }
-        Iterator<String> it = bestName.iterator();
-        if(bestName.size() > 2) {
-            for (int i = 0; i < 3; i++) {
-                //Capitalize name
-                String s = it.next();
-                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
-            }
-        }
-        return result;
+        return getBest(Category.PARTY);
     }
 
     @RequestMapping(value = "/teacher/best/smart")
     public List<String> getBestSmart() {
-        List<Teacher> teacherList = teacherRepository.findAll();
-        HashMap<String, Integer> jokerMap = new HashMap<>();
-
-        for (Teacher teacher : teacherList) {
-            jokerMap.put(teacher.getId(), teacher.getSmart());
-        }
-
-        List<Integer> best = new ArrayList<>(jokerMap.values());
-        List<String> bestName = new ArrayList<>();
-        List<String> result = new ArrayList<>();
-
-        Collections.sort(best);
-        Collections.reverse(best);
-
-        for (int n = 0; n < jokerMap.size(); n++) {
-            for (String i : jokerMap.keySet()) {
-                int current = jokerMap.get(i);
-                if (best.get(n) == current) {
-                    bestName.add(i);
-                }
-            }
-        }
-        Iterator<String> it = bestName.iterator();
-        if(bestName.size() > 2) {
-            for (int i = 0; i < 3; i++) {
-                //Capitalize name
-                String s = it.next();
-                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
-            }
-        }
-        return result;
+        return getBest(Category.SMART);
     }
 
     @RequestMapping(value = "/teacher/best/beauty")
     public List<String> getBestBeauty() {
-        List<Teacher> teacherList = teacherRepository.findAll();
-        HashMap<String, Integer> jokerMap = new HashMap<>();
-
-        for (Teacher teacher : teacherList) {
-            jokerMap.put(teacher.getId(), teacher.getBeauty());
-        }
-
-        List<Integer> best = new ArrayList<>(jokerMap.values());
-        List<String> bestName = new ArrayList<>();
-        List<String> result = new ArrayList<>();
-
-        Collections.sort(best);
-        Collections.reverse(best);
-
-        for (int n = 0; n < jokerMap.size(); n++) {
-            for (String i : jokerMap.keySet()) {
-                int current = jokerMap.get(i);
-                if (best.get(n) == current) {
-                    bestName.add(i);
-                }
-            }
-        }
-        Iterator<String> it = bestName.iterator();
-        if(bestName.size() > 2) {
-            for (int i = 0; i < 3; i++) {
-                //Capitalize name
-                String s = it.next();
-                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
-            }
-        }
-        return result;
+        return getBest(Category.BEAUTY);
     }
 
     @RequestMapping(value = "/teacher/best/noMention")
     public List<String> getBestNoMention() {
-        List<Teacher> teacherList = teacherRepository.findAll();
-        HashMap<String, Integer> jokerMap = new HashMap<>();
-
-        for (Teacher teacher : teacherList) {
-            jokerMap.put(teacher.getId(), teacher.getNoMention());
-        }
-
-        List<Integer> best = new ArrayList<>(jokerMap.values());
-        List<String> bestName = new ArrayList<>();
-        List<String> result = new ArrayList<>();
-
-        Collections.sort(best);
-        Collections.reverse(best);
-
-        for (int n = 0; n < jokerMap.size(); n++) {
-            for (String i : jokerMap.keySet()) {
-                int current = jokerMap.get(i);
-                if (best.get(n) == current) {
-                    bestName.add(i);
-                }
-            }
-        }
-        Iterator<String> it = bestName.iterator();
-        if(bestName.size() > 2) {
-            for (int i = 0; i < 3; i++) {
-                //Capitalize name
-                String s = it.next();
-                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
-            }
-        }
-        return result;
+        return getBest(Category.NOMENTION);
     }
 
     @RequestMapping(value = "/teacher/best/noInTime")
     public List<String> getBestNoInTime() {
-        List<Teacher> teacherList = teacherRepository.findAll();
-        HashMap<String, Integer> jokerMap = new HashMap<>();
-
-        for (Teacher teacher : teacherList) {
-            jokerMap.put(teacher.getId(), teacher.getNoInTime());
-        }
-
-        List<Integer> best = new ArrayList<>(jokerMap.values());
-        List<String> bestName = new ArrayList<>();
-        List<String> result = new ArrayList<>();
-
-        Collections.sort(best);
-        Collections.reverse(best);
-
-        for (int n = 0; n < jokerMap.size(); n++) {
-            for (String i : jokerMap.keySet()) {
-                int current = jokerMap.get(i);
-                if (best.get(n) == current) {
-                    bestName.add(i);
-                }
-            }
-        }
-        Iterator<String> it = bestName.iterator();
-        if(bestName.size() > 2) {
-            for (int i = 0; i < 3; i++) {
-                //Capitalize name
-                String s = it.next();
-                result.add(s.substring(0,1).toUpperCase() + s.substring(1));
-            }
-        }
-        return result;
+        return getBest(Category.NOINTIME);
     }
 
     @RequestMapping(value = "/teacher/best/dishonorable")
     public List<String> getBestDishonorable() {
+        return getBest(Category.DISHONORABLE);
+    }
+
+    private List<String> getBest(Category category){
         List<Teacher> teacherList = teacherRepository.findAll();
-        HashMap<String, Integer> jokerMap = new HashMap<>();
+        HashMap<String, Integer> bestMap = new HashMap<>();
 
         for (Teacher teacher : teacherList) {
-            jokerMap.put(teacher.getId(), teacher.getDishonorable());
+            bestMap.put(teacher.getId(), callCategory(category, teacher));
         }
 
-        List<Integer> best = new ArrayList<>(jokerMap.values());
+        List<Integer> best = new ArrayList<>(bestMap.values());
         List<String> bestName = new ArrayList<>();
         List<String> result = new ArrayList<>();
 
         Collections.sort(best);
         Collections.reverse(best);
 
-        for (int n = 0; n < jokerMap.size(); n++) {
-            for (String i : jokerMap.keySet()) {
-                int current = jokerMap.get(i);
+        for (int n = 0; n < bestMap.size(); n++) {
+            for (String i : bestMap.keySet()) {
+                int current = bestMap.get(i);
                 if (best.get(n) == current) {
                     bestName.add(i);
                 }
@@ -368,4 +102,34 @@ public class TeacherController {
         }
         return result;
     }
+
+    private int callCategory(Category category, Teacher teacher) {
+
+        return switch (category) {
+            case JOKER -> teacher.getJoker();
+            case UNPREPARED -> teacher.getUnprepared();
+            case LATE -> teacher.getLate();
+            case UNRELIABLE -> teacher.getSpoiled();
+            case PARTY -> teacher.getParty();
+            case SMART -> teacher.getSmart();
+            case BEAUTY -> teacher.getBeauty();
+            case NOMENTION -> teacher.getNoMention();
+            case NOINTIME -> teacher.getNoInTime();
+            case DISHONORABLE -> teacher.getDishonorable();
+        };
+    }
+
+    private enum Category {
+        JOKER,
+        UNPREPARED,
+        LATE,
+        UNRELIABLE,
+        PARTY,
+        SMART,
+        BEAUTY,
+        NOMENTION,
+        NOINTIME,
+        DISHONORABLE
+    }
+
 }
