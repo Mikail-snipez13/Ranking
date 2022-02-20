@@ -7,14 +7,14 @@ You can define your own categories and the persons can vote for each category.
    1. [Token](#Token)
    2. [Teacher](#Teacher)
 
-## API
+# API
 The Host of the API is `https://teacherranking.ddns.net`
 
-### Token
+## Token
 The path to the token interface is `/tickets`.
 
 
-#### Modes
+## Modes
 ```https://teacherranking.ddns.net/tickets?mode={value}``` <br>
 
 | value  | description       | request type |
@@ -24,11 +24,11 @@ The path to the token interface is `/tickets`.
 | use    | use token         | POST         |
 
 
-#### Create Mode
+## Create Mode
 URL -> `https://teacherranking.ddns.net/tickets?mode=create` <br>
 return -> Token for Voting (e.g. XDFAEF)
 
-#### Status Mode
+## Status Mode
 
 | Parameter    | Description      |
 |--------------|------------------|
@@ -38,7 +38,7 @@ return -> Token for Voting (e.g. XDFAEF)
 URL -> `https://teacherranking.ddns.net/tickets?mode=status&id={token}` <br>
 return -> String - false | used | doesn't exist
 
-#### Use Mode
+## Use Mode
 
 | Parameter    | Description                    |
 |--------------|--------------------------------|
@@ -58,13 +58,13 @@ return -> String - false | used | doesn't exist
 URL -> `https://teacherranking.ddns.net/tickets?mode=use&id={token}&joker={teacher}&unprepared={teacher}&late={teacher}&spoiled={teacher}&party={teacher}&smart={teacher}&beauty={teacher}&noMention={teacher}&noInTime={teacher}&dishonorable={teacher}` <br>
 return -> nothing
 
-### Teacher
+## Teacher
 The path to the teacher interface is `/teacher`.
 
-#### All teacher
+## All teacher
 Get all teacher as JSON with the URL path `/teacher/all`.
 
-#### Ranking for the categories
+## Ranking for the categories
 The path to get the ranking for specific category is ``/teacher/best/{category}``.
 
 | category     | description       |
