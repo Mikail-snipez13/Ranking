@@ -1,6 +1,6 @@
 # Ranking with voting
 The project is a web application based on spring-boot framework.
-You can define your own categories and the persons can vote for each category.
+Create tokens for students and they can use them to vote. At the end you can see a ranking.
 
 ## Content
 1. [API](#API)
@@ -8,7 +8,7 @@ You can define your own categories and the persons can vote for each category.
    2. [Teacher](#Teacher)
 
 # API
-The Host of the API is `https://teacherranking.ddns.net`
+In this documentation is the host "teacherranking.ddns.net"
 
 ## Token
 The path to the token interface is `/tickets`.
