@@ -1,9 +1,11 @@
 package mikail.Ranking.Controller;
 
+import mikail.Ranking.Entity.Category;
 import mikail.Ranking.Entity.Teacher;
 import mikail.Ranking.Repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
@@ -367,5 +369,23 @@ public class TeacherController {
             }
         }
         return result;
+    }
+
+    @RequestMapping(value = "/teacher/best", method = RequestMethod.GET)
+    public Category[] getBest() {
+        Category[] best = new Category[10];
+
+        best[0] = new Category(1L, "Mein Joker bei \"Wer wird Millionar\"", this.getBestJoker());
+        best[1] = new Category(2L, "Überlegt sich den Unterricht während der Stunde", this.getBestUnprepared());
+        best[2] = new Category(3L, "Wer gibt Klausuren mit Staubschicht zurück", this.getBestLate());
+        best[3] = new Category(4L, "Total verpeilt", this.getBestSpoiled());
+        best[4] = new Category(5L, "Größter Diskolöwe/Partymaus", this.getBestParty());
+        best[5] = new Category(6L, "Der Engagierteste", this.getBestSmart());
+        best[6] = new Category(7L, "Der Schönling", this.getBestBeauty());
+        best[7] = new Category(8L, "Will nicht in die Abizeitung", this.getBestNoMention());
+        best[8] = new Category(9L, "Der Zuspätkommer", this.getBestNoInTime());
+        best[9] = new Category(10L, "Der Nichts-Gönner", this.getBestDishonorable());
+
+        return best;
     }
 }

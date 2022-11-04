@@ -14,7 +14,7 @@
 	<name>Ranking</name>
 	<description>Ranking of Teachers</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 		<!-- Spring boot main class -->
 		<start-class>mikail.Ranking.RankingApplication</start-class>
 	</properties>
@@ -46,6 +46,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>${project.name}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
