@@ -15,9 +15,7 @@ public class Ticket {
     @Id
     @Column(name = "id", nullable = false)
     private String id;
-
-    @Column(name = "used")
-    private Boolean used;
+    private Boolean valid;
 
     public String getId() {
         return id;

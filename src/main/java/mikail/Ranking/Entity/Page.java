@@ -17,7 +17,6 @@ public class Page {
 
     @Id
     private String id;
-
     private int views;
 
     public void increaseViews() {

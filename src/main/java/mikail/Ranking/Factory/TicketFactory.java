@@ -10,7 +10,6 @@ import java.util.Random;
 
 @Service
 public class TicketFactory {
-    private final int RANDOM_STRING_LENGTH = 6;
 
     public Ticket createTicket(TicketRepository ticketRepository) {
         String random = randomString();
@@ -25,6 +24,7 @@ public class TicketFactory {
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
 
+        int RANDOM_STRING_LENGTH = 6;
         for(int i = 0; i < RANDOM_STRING_LENGTH; i++) {
 
             int index = random.nextInt(alphabet.length());
