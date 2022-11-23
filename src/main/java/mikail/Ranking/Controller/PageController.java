@@ -1,22 +1,21 @@
 package mikail.Ranking.Controller;
 
-import ch.qos.logback.classic.spi.EventArgUtil;
+
+import lombok.RequiredArgsConstructor;
 import mikail.Ranking.Entity.Page;
 import mikail.Ranking.Repository.PageRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
-
 @RestController
+@RequiredArgsConstructor
+@RequestMapping(value = "/page")
 public class PageController {
 
-    @Autowired
-    private PageRepository pageRepository;
+    private final PageRepository pageRepository;
 
-    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    @RequestMapping(value = "/voting", method = RequestMethod.GET)
     public int[] getCount() {
         if (pageRepository.existsById("views")) {
             int[] i = new int[1];
@@ -31,7 +30,7 @@ public class PageController {
         }
     }
 
-    @RequestMapping(value = "/page/ranking", method = RequestMethod.GET)
+    @RequestMapping(value = "/ranking", method = RequestMethod.GET)
     public int[] getRankingCount() {
         if (pageRepository.existsById("ranking_views")) {
             int[] i = new int[1];
@@ -46,17 +45,16 @@ public class PageController {
         }
     }
 
-    @RequestMapping(value = "/requests", method = RequestMethod.GET)
+    @RequestMapping(value = "/votes", method = RequestMethod.GET)
     public int[] getRequests() {
         int[] i = new int[1];
         if (pageRepository.existsById("votes")) {
             i[0] = pageRepository.getById("votes").getViews();
-            return i;
         }
         else {
             pageRepository.save(new Page("votes", 0));
-            return i;
         }
+        return i;
     }
 
 }

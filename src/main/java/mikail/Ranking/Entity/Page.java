@@ -8,15 +8,14 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
 @AllArgsConstructor
+@Getter
 @Table(name = "page")
 @NoArgsConstructor
 public class Page {
 
     @Id
-    private String id;
+    private String name;
     private int views;
 
     public void increaseViews() {
