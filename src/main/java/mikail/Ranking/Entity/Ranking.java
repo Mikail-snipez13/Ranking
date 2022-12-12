@@ -24,4 +24,8 @@ public class Ranking {
         this.title = title;
         this.userId = userId;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

@@ -18,7 +18,7 @@ public class Vote {
     private Long id;
 
     @OneToOne
-    private Question category;
+    private Question question;
     @OneToOne
     private Teacher teacher;
 

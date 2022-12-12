@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import mikail.Ranking.Entity.Teacher;
 import mikail.Ranking.Interface.SimpleJSONEntityCreator;
 import mikail.Ranking.Repository.TeacherRepository;
+import mikail.Ranking.Service.TeacherService;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -15,6 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TeacherController implements SimpleJSONEntityCreator<Teacher> {
     private final TeacherRepository teacherRepo;
+    private final TeacherService service;
 
     @Override
     @PostMapping("/create")
@@ -24,7 +27,12 @@ public class TeacherController implements SimpleJSONEntityCreator<Teacher> {
         String lastname = json.getString("lastname");
         Long rankingId = json.getLong("rankingId");
 
-        teacherRepo.save(new Teacher(1L, firstname, lastname, rankingId));
+        service.create(firstname, lastname, rankingId);
+    }
+
+    @GetMapping("/get/allFromRanking/{id}")
+    public List<Teacher> getAllFromRanking(@PathVariable Long id) {
+        return teacherRepo.findAllByRankingId(id);
     }
 
     @GetMapping("/get/{id}")
@@ -33,23 +41,23 @@ public class TeacherController implements SimpleJSONEntityCreator<Teacher> {
         return opt.orElse(null);
     }
 
-    @PutMapping("/update")
-    public void update(@RequestBody final String data) {
+    @PutMapping("/update/{id}")
+    public void update(@PathVariable Long id, @RequestBody final String data) {
 
         JSONObject json = new JSONObject(data);
-        long id;
-        try {
-            id = json.getLong("id");
-        }catch (JSONException e){ return;}
 
         Optional<Teacher> teacherOpt = teacherRepo.findById(id);
         if (teacherOpt.isEmpty()) {return;}
         Teacher teacher = teacherOpt.get();
-        Optional<String> firstname = Optional.ofNullable(json.getString("firstname"));
-        Optional<String> lastname = Optional.ofNullable(json.getString("lastname"));
-        firstname.ifPresent(teacher::setFirstname);
-        lastname.ifPresent(teacher::setLastname);
+        try {
+            String firstname = json.getString("firstname");
+            teacher.setFirstname(firstname);
+        } catch (JSONException ignored) {}
 
+        try {
+            String lastname = json.getString("lastname");
+            teacher.setLastname(lastname);
+        } catch ( JSONException ignored) {}
         teacherRepo.save(teacher);
     }
 
@@ -63,9 +71,4 @@ public class TeacherController implements SimpleJSONEntityCreator<Teacher> {
             throw new NullPointerException();
         }
     }
-
-   @GetMapping("/hello")
-   public String hello() {
-        return "Hello";
-   }
 }

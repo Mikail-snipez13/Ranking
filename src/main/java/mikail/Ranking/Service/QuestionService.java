@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,7 +19,8 @@ public class QuestionService {
     private final QuestionRepository repo;
 
     public Question create(String text, Long rankingId) {
-        return new Question(text, rankingId);
+        repo.save(new Question(text, rankingId));
+        return repo.findByRankingIdAndText(rankingId, text);
     }
 
     @Transactional
@@ -29,4 +31,22 @@ public class QuestionService {
         });
     }
 
+    public List<Question> getAllByRankingId(Long rankingId) {
+        return repo.findAllByRankingId(rankingId);
+    }
+
+    public Question getById(Long questionId) {
+        Optional<Question> question = repo.findById(questionId);
+        return question.orElse(null);
+    }
+
+    public void delete(Long questionId) {
+        Optional<Question> question = repo.findById(questionId);
+        question.ifPresent(repo::delete);
+    }
+
+    public void deleteAllByRankingId(Long rankingId) {
+        List<Question> questions = repo.findAllByRankingId(rankingId);
+        repo.deleteAll(questions);
+    }
 }

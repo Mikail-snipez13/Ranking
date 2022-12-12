@@ -14,9 +14,11 @@ import java.util.Optional;
 public class RankingService {
 
     private final RankingRepository repo;
+    private final QuestionService questionService;
+    private final TeacherService teacherService;
 
     public Ranking create(@NonNull final String title, @NonNull final Long userId) {
-        Ranking existingRanking = repo.findByTitle(title);
+        Ranking existingRanking = repo.findByUserIdAndTitle(userId, title);
         if (existingRanking == null) {
             Ranking ranking = new Ranking(title, userId);
             repo.save(ranking);
@@ -34,5 +36,13 @@ public class RankingService {
     public Ranking getRanking(Long rankingId) {
         Optional<Ranking> optionalRanking = repo.findById(rankingId);
         return optionalRanking.orElse(null);
+    }
+
+    public void delete(Long rankingId) {
+        Optional<Ranking> ranking = repo.findById(rankingId);
+        ranking.ifPresent(repo::delete);
+
+        questionService.deleteAllByRankingId(rankingId);
+        teacherService.deleteAllByRankingId(rankingId);
     }
 }

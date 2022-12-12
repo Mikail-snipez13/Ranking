@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TeacherService {
@@ -14,11 +15,16 @@ public class TeacherService {
     @Autowired
     private TeacherRepository repo;
 
-    public void create(final String firstname, final String lastname, Ranking ranking) {
+    public void create(final String firstname, final String lastname, final Long rankingId) {
 
-        // TODO: check if the Teacher exists
-//        Teacher teacher = repo.findExact(firstname, lastname, ranking.getId());
+        Optional<Teacher> teacher = Optional.ofNullable(repo.findExact(firstname, lastname, rankingId));
+        if(teacher.isPresent()) {return;}
 
-        repo.save(new Teacher(1L, firstname, lastname, ranking.getId()));
+        repo.save(new Teacher(firstname, lastname, rankingId));
+    }
+
+    public void deleteAllByRankingId(Long rankingId) {
+        List<Teacher> teachers = repo.findAllByRankingId(rankingId);
+        repo.deleteAll(teachers);
     }
 }

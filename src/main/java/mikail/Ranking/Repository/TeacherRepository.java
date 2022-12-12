@@ -13,7 +13,7 @@ public interface TeacherRepository extends JpaRepository<Teacher, Long> {
     public List<Teacher> findAllByRankingId(Long rankingId);
 
     @Query(
-            value = "SELECT u FROM Teacher WHERE u.firstname = :first AND u.lastname = :last AND u.rankingId = :rankingId",
+            value = "SELECT * FROM teacher WHERE firstname = :first AND lastname = :last AND ranking_id = :rankingId",
             nativeQuery = true)
     public Teacher findExact(
             @Param("first") String firstname,
