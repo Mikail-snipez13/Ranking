@@ -20,6 +20,5 @@ public class User {
     private String nickname;
     private String email;
     private String password;
-    @OneToMany
-    private List<Ranking> rankings;
+//    private String[] roles;
 }

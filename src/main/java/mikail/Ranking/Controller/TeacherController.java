@@ -22,12 +22,13 @@ public class TeacherController implements SimpleJSONEntityCreator<Teacher> {
         JSONObject json = new JSONObject(data);
         String firstname = json.getString("firstname");
         String lastname = json.getString("lastname");
+        Long rankingId = json.getLong("rankingId");
 
-        teacherRepo.save(new Teacher(1L, firstname, lastname));
+        teacherRepo.save(new Teacher(1L, firstname, lastname, rankingId));
     }
 
-    @GetMapping("/get")
-    public Teacher get(@RequestParam Long id) {
+    @GetMapping("/get/{id}")
+    public Teacher get(@PathVariable Long id) {
         Optional<Teacher> opt = teacherRepo.findById(id);
         return opt.orElse(null);
     }
@@ -50,6 +51,17 @@ public class TeacherController implements SimpleJSONEntityCreator<Teacher> {
         lastname.ifPresent(teacher::setLastname);
 
         teacherRepo.save(teacher);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable final Long id) throws NullPointerException{
+        Optional<Teacher> teacher = teacherRepo.findById(id);
+        if (teacher.isPresent()) {
+            teacherRepo.delete(teacher.get());
+        }
+        else {
+            throw new NullPointerException();
+        }
     }
 
    @GetMapping("/hello")
