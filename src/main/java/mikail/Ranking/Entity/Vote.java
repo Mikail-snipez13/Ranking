@@ -3,9 +3,11 @@ package mikail.Ranking.Entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.swing.text.DateFormatter;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 @Entity
-@Table(name = "votes")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -16,14 +18,13 @@ public class Vote {
     @Column(name = "id", nullable = false)
     @Setter(AccessLevel.NONE)
     private Long id;
+    private Long questionId;
+    private Long teacherId;
+    private String timestamp;
 
-    @OneToOne
-    private Question question;
-    @OneToOne
-    private Teacher teacher;
-
-
-    public Long getId() {
-        return id;
+    public Vote(Long questionId, Long teacherId, String date) {
+        this.questionId = questionId;
+        this.teacherId = teacherId;
+        this.timestamp = date;
     }
 }

@@ -3,6 +3,7 @@ package mikail.Ranking.Controller;
 import lombok.RequiredArgsConstructor;
 import mikail.Ranking.Entity.Ranking;
 import mikail.Ranking.Service.RankingService;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,16 +33,18 @@ public class RankingController {
 
     @GetMapping("/get/{id}")
     public Ranking get(@PathVariable Long id) {
-        return service.getRanking(id);
+        return service.getById(id);
     }
 
-    @PutMapping("/update/{id}/title")
+    @PutMapping("/update/{id}")
     @Transactional
     public void update(@PathVariable Long id, @RequestBody String data) {
-        Ranking ranking = service.getRanking(id);
-        JSONObject json = new JSONObject(data);
-        String title = json.getString("title");
-        ranking.setTitle(title);
+        try {
+            JSONObject json = new JSONObject(data);
+            String title = json.getString("title");
+            Ranking ranking = service.getById(id);
+            ranking.setTitle(title);
+        } catch (JSONException ignored) {}
     }
 
     @DeleteMapping("/delete/{id}")

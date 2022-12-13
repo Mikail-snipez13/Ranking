@@ -11,12 +11,12 @@ import java.util.Random;
 @Service
 public class TicketFactory {
 
-    public Ticket createTicket(TicketRepository ticketRepository) {
+    public Ticket createTicket(TicketRepository repo, Long rankingId) {
         String random = randomString();
-        while (ticketRepository.existsById(random)) {
-            random = randomString();
-        }
-        return new Ticket(random, false);
+        do {random = randomString();}
+        while (repo.getByKeyAndRankingId(random, rankingId) != null);
+
+        return new Ticket(random, rankingId);
     }
 
     public String randomString() {

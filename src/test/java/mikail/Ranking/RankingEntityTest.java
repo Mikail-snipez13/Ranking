@@ -35,9 +35,8 @@ class RankingEntityTest {
 	private QuestionService questionService;
 
 	void createRanking() {
-		Ranking ranking = rankingService.create("One Piece", 1L);
-		rankingRepo.save(ranking);
-		Ranking ranking1 = rankingRepo.findByTitle("One Piece");
+		rankingService.create("One Piece", 1L);
+		Ranking ranking1 = rankingRepo.findByUserIdAndTitle(1L, "One Piece");
 
 		Question q1 = new Question("Wer würde?", ranking1.getId());
 		Question q2 = new Question("Wer ist Zoro?", ranking1.getId());
@@ -52,7 +51,7 @@ class RankingEntityTest {
 	void getRankings() {
 		createRanking();
 
-		Ranking ranking = rankingRepo.findByTitle("One Piece");
+		Ranking ranking = rankingRepo.findByUserIdAndTitle(1L, "One Piece");
 		System.out.println(String.format("%d: %s", ranking.getId(), ranking.getTitle()));
 		assertThat(ranking != null).isTrue();
 

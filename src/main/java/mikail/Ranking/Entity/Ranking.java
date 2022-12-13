@@ -18,14 +18,18 @@ public class Ranking {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String title;
+    private int votes;
     private Long userId;
 
     public Ranking(String title, Long userId) {
         this.title = title;
         this.userId = userId;
+        this.votes = 0;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public void increaseVotes() {votes++;}
 }

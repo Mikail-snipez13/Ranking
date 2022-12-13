@@ -18,9 +18,10 @@ public class QuestionService {
 
     private final QuestionRepository repo;
 
-    public Question create(String text, Long rankingId) {
+    public void create(String text, Long rankingId) {
+        Question question = repo.findByRankingIdAndText(rankingId, text);
+        if (question != null) {return;}
         repo.save(new Question(text, rankingId));
-        return repo.findByRankingIdAndText(rankingId, text);
     }
 
     @Transactional

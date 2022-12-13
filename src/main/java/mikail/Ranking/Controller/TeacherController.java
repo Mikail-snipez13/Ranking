@@ -2,7 +2,7 @@ package mikail.Ranking.Controller;
 
 import lombok.RequiredArgsConstructor;
 import mikail.Ranking.Entity.Teacher;
-import mikail.Ranking.Interface.SimpleJSONEntityCreator;
+import mikail.Ranking.Interface.SimpleService;
 import mikail.Ranking.Repository.TeacherRepository;
 import mikail.Ranking.Service.TeacherService;
 import org.json.JSONException;
@@ -15,11 +15,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/teacher")
 @RequiredArgsConstructor
-public class TeacherController implements SimpleJSONEntityCreator<Teacher> {
+public class TeacherController {
     private final TeacherRepository teacherRepo;
     private final TeacherService service;
 
-    @Override
     @PostMapping("/create")
     public void create(@RequestBody final String data) {
         JSONObject json = new JSONObject(data);

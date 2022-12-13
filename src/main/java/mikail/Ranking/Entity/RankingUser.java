@@ -3,7 +3,6 @@ package mikail.Ranking.Entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -11,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-public class User {
+public class RankingUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
