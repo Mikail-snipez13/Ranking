@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -38,12 +39,18 @@ public class UserController {
         service.create(name, nickname, email, password);
     }
 
-    @GetMapping("/get/{nickname}")
+    @GetMapping("/{nickname}")
     public RankingUser get(@PathVariable String nickname) {
         return service.getByNickname(nickname);
     }
 
-    @PutMapping("/update/{nickname}")
+
+    @GetMapping("/all")
+    public List<RankingUser> getAll() {
+        return service.getAll();
+    }
+
+    @PatchMapping("/update/{nickname}")
     @Transactional
     public void update(@RequestBody String data, @PathVariable String nickname) {
         RankingUser user = service.getByNickname(nickname);

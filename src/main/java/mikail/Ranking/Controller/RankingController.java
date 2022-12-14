@@ -36,7 +36,7 @@ public class RankingController {
         return service.getById(id);
     }
 
-    @PutMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     @Transactional
     public void update(@PathVariable Long id, @RequestBody String data) {
         try {

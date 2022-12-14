@@ -17,14 +17,24 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
+
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, UserDetailsService userDetailsService) throws Exception {
         http
                 .csrf().disable()
+                .formLogin().disable()
                 .authorizeHttpRequests(request -> request
-                        .antMatchers(HttpMethod.GET).permitAll()
-                        .antMatchers(HttpMethod.POST, "/ranking/create").permitAll()
-                ).httpBasic();
+                        .antMatchers(HttpMethod.GET, "/user/*").hasAnyRole("ADMIN", "USER")
+                        .antMatchers(HttpMethod.POST, "/ranking/create").hasRole("USER")
+
+                        // ONLY ADMIN
+                        .antMatchers(HttpMethod.GET, "/user/all").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.POST, "/user/create", "/user/delete/*").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.DELETE, "/user/delete/*").hasRole("ADMIN")
+//                        .antMatchers(HttpMethod.PATCH, "").hasRole("ADMIN")
+                )
+                .userDetailsService(userDetailsService)
+                .httpBasic();
 
         return http.build();
     }
@@ -35,7 +45,7 @@ public class WebSecurityConfig {
                 User.withDefaultPasswordEncoder()
                         .username("mikail")
                         .password("mikail")
-                        .roles("USER")
+                        .roles("ADMIN")
                         .build();
         return new InMemoryUserDetailsManager(user);
     }

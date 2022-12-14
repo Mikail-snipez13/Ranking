@@ -40,7 +40,7 @@ public class TeacherController {
         return opt.orElse(null);
     }
 
-    @PutMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public void update(@PathVariable Long id, @RequestBody final String data) {
 
         JSONObject json = new JSONObject(data);
