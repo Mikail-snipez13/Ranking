@@ -14,14 +14,16 @@ public class Ticket {
 
     @Id
     @Column(name = "id", nullable = false)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Setter(AccessLevel.NONE)
+    private Long id;
+    private String key;
     private Boolean valid;
+    private Long rankingId;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public Ticket(String key, Long rankingId) {
+        this.key = key;
+        this.valid = true;
+        this.rankingId = rankingId;
     }
 }

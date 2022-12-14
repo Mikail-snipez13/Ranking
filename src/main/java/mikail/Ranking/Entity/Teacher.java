@@ -17,4 +17,11 @@ public class Teacher {
     private Long id;
     private String firstname;
     private String lastname;
+    private Long rankingId;
+
+    public Teacher(String firstname, String lastname, Long rankingId) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.rankingId = rankingId;
+    }
 }

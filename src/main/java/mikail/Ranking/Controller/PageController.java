@@ -30,7 +30,7 @@ public class PageController {
         }
     }
 
-    @RequestMapping(value = "/ranking", method = RequestMethod.GET)
+    @RequestMapping(value = "/views", method = RequestMethod.GET)
     public int[] getRankingCount() {
         if (pageRepository.existsById("ranking_views")) {
             int[] i = new int[1];

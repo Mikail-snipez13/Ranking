@@ -4,10 +4,11 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
-@Builder
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,17 +18,18 @@ public class Ranking {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String title;
-    @OneToMany
-    private List<Question> questions;
+    private int votes;
+    private Long userId;
 
-    public void addQuestion(Question question) {
-        if (this.questions == null) {
-            this.questions = new ArrayList<>();
-        }
-        this.questions.add(question);
+    public Ranking(String title, Long userId) {
+        this.title = title;
+        this.userId = userId;
+        this.votes = 0;
     }
 
-    public void removeQuestion(Question question) {
-        this.questions.remove(question);
+    public void setTitle(String title) {
+        this.title = title;
     }
+
+    public void increaseVotes() {votes++;}
 }
