@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired
@@ -42,6 +43,11 @@ public class UserController {
     @GetMapping("/{nickname}")
     public RankingUser get(@PathVariable String nickname) {
         return service.getByNickname(nickname);
+    }
+
+    @GetMapping("/id/{id}")
+    public String getNickname(@PathVariable Long id) {
+        return service.getById(id).getNickname();
     }
 
 

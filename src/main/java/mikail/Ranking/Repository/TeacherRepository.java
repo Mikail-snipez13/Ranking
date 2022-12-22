@@ -13,10 +13,9 @@ public interface TeacherRepository extends JpaRepository<Teacher, Long> {
     public List<Teacher> findAllByRankingId(Long rankingId);
 
     @Query(
-            value = "SELECT * FROM teacher WHERE firstname = :first AND lastname = :last AND ranking_id = :rankingId",
+            value = "SELECT * FROM teacher WHERE name = :name AND ranking_id = :rankingId",
             nativeQuery = true)
     public Teacher findExact(
-            @Param("first") String firstname,
-            @Param("last") String lastname,
+            @Param("name") String name,
             @Param("rankingId") Long rankingId);
 }

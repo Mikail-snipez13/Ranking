@@ -9,17 +9,16 @@ import mikail.Ranking.Service.TicketService;
 import mikail.Ranking.Service.VoteService;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/ticket")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class TicketController {
 
     private final TicketService service;
@@ -33,7 +32,7 @@ public class TicketController {
             ) {
         List<String> tickets = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            tickets.add(service.create(rankingId).getKey());
+            tickets.add(service.create(rankingId).getCode());
         }
         return tickets;
     }
@@ -48,13 +47,24 @@ public class TicketController {
         return service.getById(id);
     }
 
+    @GetMapping("/isValid")
+    public boolean isValid(
+            @RequestParam(value = "key") String key,
+            @RequestParam(value = "rankingId") Long rankingId ) {
+        Ticket ticket = service.getByKeyAndRankingId(key, rankingId);
+        if (ticket == null) {
+            return false;
+        }
+        return ticket.getValid();
+    }
+
     @PostMapping("/use")
     public String use(
             @RequestParam(value = "rankingId") Long rankingId,
-            @RequestParam(value = "key") String key,
+            @RequestParam(value = "code") String code,
             @RequestBody String data
     ) {
-        Ticket ticket = service.getByKeyAndRankingId(key, rankingId);
+        Ticket ticket = service.getByKeyAndRankingId(code, rankingId);
         if (ticket == null) {return "doesn't exists";}
         if (!ticket.getValid()) {return "ticket invalid";}
 

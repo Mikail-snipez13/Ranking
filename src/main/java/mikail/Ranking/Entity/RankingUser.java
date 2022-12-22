@@ -1,5 +1,6 @@
 package mikail.Ranking.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.id.UUIDGenerator;

@@ -15,13 +15,11 @@ public class Teacher {
     @Setter(AccessLevel.NONE)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    private String firstname;
-    private String lastname;
+    private String name;
     private Long rankingId;
 
-    public Teacher(String firstname, String lastname, Long rankingId) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public Teacher(String name, Long rankingId) {
+        this.name = name;
         this.rankingId = rankingId;
     }
 }

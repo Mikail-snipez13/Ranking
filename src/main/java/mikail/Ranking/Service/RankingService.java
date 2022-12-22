@@ -33,6 +33,14 @@ public class RankingService {
         return repo.findAllByUserId(userId);
     }
 
+    public List<Ranking> getAllByTitle(String title) {
+        return repo.findAllByTitle(title);
+    }
+
+    public List<Ranking> search(String value) {
+        return repo.search(value);
+    }
+
     public Ranking getById(Long rankingId) {
         Optional<Ranking> optionalRanking = repo.findById(rankingId);
         return optionalRanking.orElse(null);

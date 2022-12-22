@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Configuration
 @EnableWebSecurity
@@ -23,8 +24,9 @@ public class WebSecurityConfig {
         http
                 .csrf().disable()
                 .formLogin().disable()
+                .cors().disable()
                 .authorizeHttpRequests(request -> request
-                        .antMatchers(HttpMethod.GET, "/user/*").hasAnyRole("ADMIN", "USER")
+                        .antMatchers(HttpMethod.GET, "/user/*", "ranking/get/*").hasAnyRole("ADMIN", "USER")
                         .antMatchers(HttpMethod.POST, "/ranking/create").hasRole("USER")
 
                         // ONLY ADMIN
@@ -45,7 +47,7 @@ public class WebSecurityConfig {
                 User.withDefaultPasswordEncoder()
                         .username("mikail")
                         .password("mikail")
-                        .roles("ADMIN")
+                        .roles("ADMIN", "USER")
                         .build();
         return new InMemoryUserDetailsManager(user);
     }

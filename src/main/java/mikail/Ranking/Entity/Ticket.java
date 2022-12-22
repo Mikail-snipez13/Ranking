@@ -9,20 +9,18 @@ import javax.persistence.*;
 @Setter
 @Getter
 @Entity
-@Table(name = "ticket")
 public class Ticket {
 
     @Id
-    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Setter(AccessLevel.NONE)
     private Long id;
-    private String key;
+    private String code;
     private Boolean valid;
     private Long rankingId;
 
-    public Ticket(String key, Long rankingId) {
-        this.key = key;
+    public Ticket(String code, Long rankingId) {
+        this.code = code;
         this.valid = true;
         this.rankingId = rankingId;
     }

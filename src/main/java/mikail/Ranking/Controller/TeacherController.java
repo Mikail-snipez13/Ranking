@@ -15,6 +15,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/teacher")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class TeacherController {
     private final TeacherRepository teacherRepo;
     private final TeacherService service;
@@ -22,11 +23,10 @@ public class TeacherController {
     @PostMapping("/create")
     public void create(@RequestBody final String data) {
         JSONObject json = new JSONObject(data);
-        String firstname = json.getString("firstname");
-        String lastname = json.getString("lastname");
+        String name = json.getString("name");
         Long rankingId = json.getLong("rankingId");
 
-        service.create(firstname, lastname, rankingId);
+        service.create(name, rankingId);
     }
 
     @GetMapping("/get/allFromRanking/{id}")
@@ -49,14 +49,10 @@ public class TeacherController {
         if (teacherOpt.isEmpty()) {return;}
         Teacher teacher = teacherOpt.get();
         try {
-            String firstname = json.getString("firstname");
-            teacher.setFirstname(firstname);
+            String name = json.getString("name");
+            teacher.setName(name);
         } catch (JSONException ignored) {}
 
-        try {
-            String lastname = json.getString("lastname");
-            teacher.setLastname(lastname);
-        } catch ( JSONException ignored) {}
         teacherRepo.save(teacher);
     }
 

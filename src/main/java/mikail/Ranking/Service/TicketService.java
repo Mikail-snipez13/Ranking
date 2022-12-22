@@ -29,8 +29,8 @@ public class TicketService {
         return repo.getById(id);
     }
 
-    public Ticket getByKeyAndRankingId(String key, Long rankingId) {
-        return repo.getByKeyAndRankingId(key, rankingId);
+    public Ticket getByKeyAndRankingId(String code, Long rankingId) {
+        return repo.getByCodeAndRankingId(code, rankingId);
     }
 
     public List<Ticket> getAllByRankingId(Long rankingId) {
@@ -39,7 +39,7 @@ public class TicketService {
 
     @Transactional
     public void useTicket(String key, Long rankingId) {
-        Ticket ticket = repo.getByKeyAndRankingId(key, rankingId);
+        Ticket ticket = repo.getByCodeAndRankingId(key, rankingId);
         if (ticket != null) {
             ticket.setValid(false);
         }

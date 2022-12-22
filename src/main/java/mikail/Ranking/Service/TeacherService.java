@@ -15,12 +15,12 @@ public class TeacherService {
     @Autowired
     private TeacherRepository repo;
 
-    public void create(final String firstname, final String lastname, final Long rankingId) {
+    public void create(final String name, final Long rankingId) {
 
-        Optional<Teacher> teacher = Optional.ofNullable(repo.findExact(firstname, lastname, rankingId));
+        Optional<Teacher> teacher = Optional.ofNullable(repo.findExact(name, rankingId));
         if(teacher.isPresent()) {return;}
 
-        repo.save(new Teacher(firstname, lastname, rankingId));
+        repo.save(new Teacher(name, rankingId));
     }
 
     public void deleteAllByRankingId(Long rankingId) {

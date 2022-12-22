@@ -23,7 +23,7 @@ public class RankingApplication {
 		SpringApplication.run(RankingApplication.class, args);
 	}
 
-	@Bean
+//	@Bean
 	public CommandLineRunner initData(UserService service) {
 		return args -> {
 			service.create("mikail", "mikail");

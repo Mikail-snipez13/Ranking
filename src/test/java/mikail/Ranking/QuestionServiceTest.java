@@ -14,7 +14,6 @@ public class QuestionServiceTest {
 
     @Test
     void create() {
-        Question question = service.create("Hallo", 1L);
-        System.out.println(String.format("ID: %d \nTEXT: %s", question.getId(), question.getText()));
+        service.create("Hallo", 1L);
     }
 }
