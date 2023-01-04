@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,28 +21,34 @@ public class WebSecurityConfig {
 
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, UserDetailsService userDetailsService) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, MyUserDetailsService userDetailsService) throws Exception {
         http
                 .csrf().disable()
                 .formLogin().disable()
                 .cors().disable()
-                .authorizeHttpRequests(request -> request
-                        .antMatchers(HttpMethod.GET, "/user/*", "ranking/get/*").hasAnyRole("ADMIN", "USER")
-                        .antMatchers(HttpMethod.POST, "/ranking/create").hasRole("USER")
+                .authorizeRequests()
 
-                        // ONLY ADMIN
-                        .antMatchers(HttpMethod.GET, "/user/all").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.POST, "/user/create", "/user/delete/*").hasRole("ADMIN")
-                        .antMatchers(HttpMethod.DELETE, "/user/delete/*").hasRole("ADMIN")
-//                        .antMatchers(HttpMethod.PATCH, "").hasRole("ADMIN")
-                )
+                // EVERYONE
+                .antMatchers( "/ranking/search/*", "/ticket/isValid", "/ticket/use").permitAll()
+
+                // USER
+                .antMatchers(HttpMethod.GET, "/user/get/me", "/ranking/get/*", "/get/usernameById/*").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST, "/ranking/create", "/ticket/create", "/question/create").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers(HttpMethod.PATCH, "/ranking/update/*", "/question/update/*", "/user/update/*").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers(HttpMethod.DELETE, "/question/delete/*", "/ranking/delete/*").hasAnyAuthority("ADMIN", "USER")
+
+                // ONLY ADMIN
+                .antMatchers(HttpMethod.GET,"/user/all", "/user/get/*").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.POST, "/user/create").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/user/delete/*").hasAuthority("ADMIN")
+                .and()
                 .userDetailsService(userDetailsService)
                 .httpBasic();
 
         return http.build();
     }
 
-    @Bean
+//    @Bean
     public UserDetailsService userDetailsService() {
         UserDetails user =
                 User.withDefaultPasswordEncoder()
@@ -50,5 +57,10 @@ public class WebSecurityConfig {
                         .roles("ADMIN", "USER")
                         .build();
         return new InMemoryUserDetailsManager(user);
+    }
+
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
     }
 }

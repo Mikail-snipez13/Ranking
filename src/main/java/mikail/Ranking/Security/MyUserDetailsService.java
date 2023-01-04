@@ -15,10 +15,11 @@ public class MyUserDetailsService implements UserDetailsService {
     private UserService service;
 
     @Override
-    public UserDetails loadUserByUsername(String nickname) throws UsernameNotFoundException {
-        RankingUser user = service.getByNickname(nickname);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        RankingUser user = service.getByUsername(username);
+
         if (user == null) {
-            throw new UsernameNotFoundException(nickname);
+            throw new UsernameNotFoundException(username);
         }
         return new MyUserPrincipal(user);
     }

@@ -2,7 +2,9 @@ package mikail.Ranking.Service;
 
 import lombok.RequiredArgsConstructor;
 import mikail.Ranking.Entity.RankingUser;
+import mikail.Ranking.Entity.Role;
 import mikail.Ranking.Repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,41 +17,50 @@ public class UserService {
 
     private final UserRepository repo;
     private final RankingService rankingService;
+    private final RoleService roleService;
+    private final PasswordEncoder passwordEncoder;
 
 
-    public void create(String name, String nickname, String email, String password) {
+    public void create(String name, String username, String email, String password) {
 
         // create user only if the user doesn't exist
-        RankingUser user = repo.findByNickname(nickname);
+        RankingUser user = repo.findByUsername(username);
         if (user == null) {
             repo.save(
                     RankingUser.builder()
                             .name(name)
-                            .nickname(nickname)
+                            .username(username)
                             .email(email)
-                            .password(password)
+                            .password(passwordEncoder.encode(password))
                             .build());
         }
     }
 
-    public void create(String nickname, String password) {
+    public void create(String username, String password) {
         // create user only if the user doesn't exist
-        RankingUser user = repo.findByNickname(nickname);
+        RankingUser user = repo.findByUsername(username);
         if (user == null) {
             repo.save(
                     RankingUser.builder()
-                            .nickname(nickname)
-                            .password(password)
+                            .username(username)
+                            .password(passwordEncoder.encode(password))
                             .build());
         }
     }
 
     @Transactional
-    public void addRole(String nickname, String role) {
+    public void addRole(String username, String roleName) {
         // create user only if the user doesn't exist
-        RankingUser user = repo.findByNickname(nickname);
-        if (user != null) {
-            user.addRole(role);
+        RankingUser user = repo.findByUsername(username);
+        Role role = roleService.getByName(roleName);
+        if (user != null && role != null) {
+            if(user.getRoles() == null) {
+                user.addRole(role);
+                return;
+            }
+            if(!user.getRoles().contains(role)) {
+                user.addRole(role);
+            }
         }
     }
 
@@ -58,8 +69,8 @@ public class UserService {
         return user.orElse(null);
     }
 
-    public RankingUser getByNickname(String nickname) {
-        return repo.findByNickname(nickname);
+    public RankingUser getByUsername(String username) {
+        return repo.findByUsername(username);
     }
 
     public List<RankingUser> getAll() { return repo.findAll();}

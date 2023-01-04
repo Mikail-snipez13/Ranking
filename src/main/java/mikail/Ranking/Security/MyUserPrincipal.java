@@ -3,21 +3,18 @@ package mikail.Ranking.Security;
 import mikail.Ranking.Entity.RankingUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Collection;
 
-public class MyUserPrincipal implements UserDetails {
-    private RankingUser user;
+public record MyUserPrincipal(RankingUser user) implements UserDetails {
 
-    public MyUserPrincipal(RankingUser user) {
-        this.user = user;
+    public RankingUser getUser() {
+        return user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return user.getRoles();
     }
 
     @Override
@@ -27,26 +24,26 @@ public class MyUserPrincipal implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getNickname();
+        return user.getUsername();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

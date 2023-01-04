@@ -29,6 +29,10 @@ public class RankingService {
         }
     }
 
+    public Ranking findByUserIdAndTitle(Long userId, String title) {
+        return repo.findByUserIdAndTitle(userId, title);
+    }
+
     public List<Ranking> findAllFromUser(Long userId) {
         return repo.findAllByUserId(userId);
     }

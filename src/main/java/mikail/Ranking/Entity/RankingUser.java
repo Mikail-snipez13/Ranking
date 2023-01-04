@@ -23,10 +23,12 @@ public class RankingUser {
     @Setter(AccessLevel.NONE)
     private Long id;
     private String name;
-    private String nickname;
+    private String username;
     private String email;
     private String password;
-    private String[] roles;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> roles = new ArrayList<>();
 
 
 //    public RankingUser(String nickname, String password) {
@@ -42,16 +44,11 @@ public class RankingUser {
 //        this.roles = new ArrayList<>();
 //    }
 //
-    public void addRole(String role) {
-        if (this.roles == null) {
-            String[] roles = new String[1];
-            roles[0] = role;
-            this.roles = roles;
+    public void addRole(Role role) {
+        if (roles == null) {
+            this.roles = new ArrayList<>();
         }
-        else {
-            List<String> roles = Arrays.asList(this.roles);
-            roles.add(role);
-            this.roles = roles.toArray(new String[0]);
-        }
+        roles.add(role);
     }
+
 }
